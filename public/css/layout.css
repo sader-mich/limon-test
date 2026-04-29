@@ -1,0 +1,32 @@
+p, a, li, blockquote, label, span {
+    color: black;
+}
+.dropdown.bootstrap-select.form-control {
+    border: 1px solid #ced4da
+}
+@font-face {
+    font-family: 'Gibson Light';
+    src: url('/fonts/GibsonLight.OTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    background-image: url('/limon/img/bg.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen */
+    font-family: Arial, sans-serif; /* Establece la fuente para el texto */
+    color: #333; /* Color de texto */
+}
+.contenido {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+    max-width: 600px; /* Ancho máximo del contenido */
+    margin: 20px auto; /* Centra el contenido */
+    border-radius: 10px; /* Borde redondeado */
+}
+
+h1 {
+    text-align: center;
+}
