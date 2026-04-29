@@ -428,6 +428,7 @@ composer require pusher/pusher-php-server
 
 # Laravel CORS
 En boostrap/app.php
+```
 ->withMiddleware(function (Middleware $middleware) {
         $middleware->use([
             // \Illuminate\Http\Middleware\TrustHosts::class,
@@ -470,6 +471,7 @@ En boostrap/app.php
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         ]);
 })
+```
 
 # DataTables
 ## Idioma
@@ -477,15 +479,22 @@ https://cdn.datatables.net/plug-ins/2.0.3/i18n/es-MX.json
 
 # Subir a servidor
 En .env
+```
 APP_URL=http://10.8.30.232
+```
 
 En config/app.php
+```
 'url' => env('APP_URL', 'http://10.8.30.232'),
+```
 
 En resources/views/layouts/app.blade.php
+```
 form hidden id="searchform" method="get" action="http://10.8.30.232 search"
+```
 
 # Spatie Activitylog
+```
 composer require spatie/laravel-activitylog
 php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="activitylog-migrations"
 php artisan migrate
@@ -496,8 +505,10 @@ activity()
     ->causedBy(Auth::user()->id)
     ->withProperties(['attributes' => $serie->attributesToArray()])
     ->log('Se agrego una nueva serie');
+```
 
 # Custom Alerts
+```
 composer require php-flasher/flasher-notyf-laravel
 https://php-flasher.io/library/notyf/
 
@@ -510,20 +521,25 @@ notyf()
     ->position('y', 'top')
     ->addSuccess('Tomo eliminado correctamente');
     return redirect()->back();
-
+```
 
 # QR Code
+```
 composer require simplesoftwareio/simple-qrcode
+```
 
 # Imagen
+```
 composer require intervention/image
+```
 
 # Storege:link reset
-
+```
 cd proyecto
 ls -l public/storage
 rm -rf public/storage
 php artisan storage:link
+```
 
 # Wordpress
 
