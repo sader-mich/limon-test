@@ -116,7 +116,7 @@ npm run build
 composer require spatie/laravel-permission
 
 # Add middleware boostrap/app.php
-
+```
 $middleware->alias([
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
@@ -125,9 +125,10 @@ $middleware->alias([
             'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
             'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         ]);
+```
 
 Add middleware boostrap/providers.php
-
+```
 <?php
 
 return [
@@ -203,19 +204,27 @@ rm 'INFORME_Georgina Gutierrez Lopez_2024-JUNIO_20240617_174401.pdf' 'INFORME_Ge
 php artisan config:clear
 php artisan cache:clear
 php artisan view:clear
+```
 
 # Laravel JSValidation
+```
 composer require proengsoft/laravel-jsvalidation
 php artisan vendor:publish --provider="Proengsoft\JsValidation\JsValidationServiceProvider"
+```
 
 En config/jsvalidation.php
+```
 'view' => 'jsvalidation::bootstrap5',
+```
 
 En .gitignore
+```
 /resources/views/vendor/
 /public/vendor/
+```
 
 # Custom Alerts
+```
 composer require php-flasher/flasher-notyf-laravel
 https://php-flasher.io/library/notyf/
 
@@ -228,26 +237,36 @@ notyf()
     ->position('y', 'top')
     ->addSuccess('Tomo eliminado correctamente');
     return redirect()->back();
+```
 
 # Trait "Laravel\Sanctum\HasApiTokens" not found
+```
 composer require laravel/sanctum
+```
 
 # Instalar laravel 11
+```
 composer create-project laravel/laravel:^11.0 proyecto-sader
 cd proyecto-sader
 php artisan serve
+```
 
 # Instalar Laravel Spatie
+```
 composer require spatie/laravel-permission
+```
 
 En boostrap/providers.php
+```
 return [
     // ...
     Spatie\Permission\PermissionServiceProvider::class,
 ];
+```
 
 In Laravel 11 open /bootstrap/app.php and register them there:
 
+```
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
@@ -258,44 +277,58 @@ In Laravel 11 open /bootstrap/app.php and register them there:
 
 
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+```
 
 # Añadir roles y permisos en el middleware
 En boostrap/app.php
+```
 ->withMiddleware(function (Middleware $middleware) {
     // ...
     $middleware->alias(['role' => \Spatie\Permission\Middleware\RoleMiddleware::class]);
     $middleware->alias(['permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class]);
     $middleware->alias(['role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class]);
 })
+```
 
 # Crear el crud de Archivo
+```
 php artisan make:model Archivo -mcr --requests
+```
 
 # Instalar Laravel Sanctum
+```
 php artisan install:api
+```
 
 # Añadir Spatie Traits el modelo de User
+```
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens, HasRoles;
     // ...
 }
+```
 
 ## Opcional: Añadir username para login con username en vez de correo
+```
 protected $fillable = [
         'name',
         'username',
         'email',
         'password',
     ];
+```
 
 
 # Crear los seeders
+```
 php artisan make:seeder PermissionSeeder
 php artisan make:seeder RoleSeeder
 php artisan make:seeder AdminSeeder
+```
 
 ## Actuallizar DatabaseSeeder
+```
 public function run(): void
     {
         $this->call([
@@ -304,21 +337,27 @@ public function run(): void
             AdminSeeder::class,
         ]);
     }
+```
 
 # Configurar la base de datos
+```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=
+```
 
 # Migrar los datos
+```
 php artisan migrate:refresh --seed
+```
 
 # Definiendo el Admin
 En app/Providers/AppServiceProvider.php
 
+```
 // ...
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Pagination\Paginator;
@@ -330,47 +369,65 @@ public function boot(): void
         });
         Paginator::useBootstrapFive();
     }
+```
 
 # Laravel Bootstrap Auth Scaffolding
+```
 composer require laravel/ui
 php artisan ui bootstrap --auth
 npm install
 npm run dev
+```
 
 # Config files
+```
 php artisan config:publish
 hashing
 cors
 broadcasting
 view
+```
 
 # Laravel JSValidation
+```
 composer require proengsoft/laravel-jsvalidation
 php artisan vendor:publish --provider="Proengsoft\JsValidation\JsValidationServiceProvider"
+```
 
 En config/jsvalidation.php
+```
 'view' => 'jsvalidation::bootstrap5',
+```
 
 En .gitignore
+```
 /resources/views/vendor/
 /public/vendor/
+```
 
 ## Opcional Hidden Elements
+```
 'ignore' => "[contenteditable='true']",
+```
 
 # Laravel Excel
+```
 composer require maatwebsite/excel
+```
 
 En bootstrap/providers.php
+```
 return [
     // ...
     Maatwebsite\Excel\ExcelServiceProvider::class,
 ];
 
 php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config
+```
 
 # Cambiar username por email en la verificacion
 https://dev.to/shanisingh03/how-to-login-with-username-instead-of-email-in-laravel--hj8
+```
 php artisan make:migration add_username_field_in_users_table
 
 public function up(): void
@@ -386,29 +443,39 @@ public function down(): void
         $table->dropColumn('username');
     });
 }
+```
 
 
 # 404 Paginas
+```
 php artisan vendor:publish --tag=laravel-errors
+```
 
 # Laravel Lang
 Eliminar el directorio de lang
+```
 composer require --dev laravel-lang/common
 php artisan lang:add es
+```
 
 En .env
+```
 APP_LOCALE=es
 APP_FALLBACK_LOCALE=es
 APP_FAKER_LOCALE=es_MX
+```
 
 En config/app.php
+```
 'locale' => env('APP_LOCALE', 'es'),
 
 'fallback_locale' => env('APP_FALLBACK_LOCALE', 'es'),
 
 'faker_locale' => env('APP_FAKER_LOCALE', 'es_MX'),
+```
 
 En composer.json
+```
 {
     "scripts": {
         "post-update-cmd": [
@@ -417,14 +484,19 @@ En composer.json
         ]
     }
 }
+```
 
 # Database Collation
 En config/database.php
+```
 'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+```
 
 # Broadcasting
+```
 php artisan install:broadcasting
 composer require pusher/pusher-php-server
+```
 
 # Laravel CORS
 En boostrap/app.php
